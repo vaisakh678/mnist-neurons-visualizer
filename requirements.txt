@@ -1,0 +1,6 @@
+ipykernel==7.4.0
+jupyterlab==4.6.4
+matplotlib==3.11.2
+numpy==2.5.4
+torch==2.14.1
+torchvision==0.29.1
