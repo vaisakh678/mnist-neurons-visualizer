@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neuron Space</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="scene" aria-label="3D network visualization"></canvas>
+
+  <div class="hud">
+    <header class="title">
+      <p class="eyebrow">Neural network, slowed down</p>
+      <h1>Inside the network</h1>
+      <p class="meta">784 → 512 → 256 → 128 → 10 · trained locally in PyTorch · <span id="accuracy">–</span> test accuracy</p>
+      <p class="caption" id="caption">Loading weights…</p>
+      <div class="progress"><div id="progress-bar"></div></div>
+    </header>
+
+    <section class="card controls-card">
+      <div class="pad-wrap">
+        <canvas id="pad" aria-label="Drawing pad"></canvas>
+        <p class="pad-hint" id="pad-hint">Draw a digit</p>
+      </div>
+      <div class="controls">
+        <button id="clear" title="Clear (C)">Clear <kbd>C</kbd></button>
+        <button id="replay" title="Replay (Space)">Replay <kbd>␣</kbd></button>
+        <button id="sample" title="Random test digit (R)">Random <kbd>R</kbd></button>
+        <button id="loop" title="Loop random digits (L)" aria-pressed="false">Loop <kbd>L</kbd></button>
+        <button id="camera" title="Camera: orbit / follow / manual (V)">Orbit <kbd>V</kbd></button>
+        <button id="hide" title="Hide UI (H)">Hide UI <kbd>H</kbd></button>
+      </div>
+      <label class="speed">
+        <span>Speed</span>
+        <input id="speed" type="range" min="0" max="3" step="1" value="1">
+        <output id="speed-label">0.5×</output>
+      </label>
+    </section>
+
+    <section class="card result-card" aria-live="polite">
+      <p class="result-label">Prediction</p>
+      <div class="result-row">
+        <span class="result-digit" id="result-digit">?</span>
+        <div>
+          <p class="result-conf" id="result-conf">waiting for a digit</p>
+          <p class="result-note" id="result-note"></p>
+        </div>
+      </div>
+      <ol class="bars" id="bars"></ol>
+    </section>
+  </div>
+
+  <p class="unhide" id="unhide">Press H to show the UI</p>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
